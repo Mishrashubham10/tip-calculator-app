@@ -1,111 +1,132 @@
+// import { useState } from "react";
+
 /* eslint-disable react/prop-types */
-const Form = ({ handleBillAmtInput, billAmt, handleSelectedTip, showbillAmtError, handlePeepsInput, peeps, showPeepsError }) => {
+const Form = ({ bill, setBill, people, setPeople, setTip }) => {
+
+  const handleSelectedTip = (e) => {
+    setTip(+e.target.value);
+  };
 
   return (
     <div className="form">
       <div className="label-group">
         <div className="label-wrapper">
-        <label 
-        className="label" 
-        htmlFor="bill">
-          Bill
-        </label>
-        <p className="error">
-          {
-          showbillAmtError ? "Please enter numbers only" : ""
-        }
-        </p>
+          <label className="label" htmlFor="bill">
+            Bill
+          </label>
         </div>
-        <input 
-        type="number" 
-        id="bill" 
-        name="bill" 
-        onInput={handleBillAmtInput}
-        value={billAmt} 
+        <input
+          type="number"
+          id="bill"
+          name="bill"
+          onInput={(e) => setBill(+e.target.value)}
+          value={bill}
         />
       </div>
 
       <div className="tip-section">
         <p className="label">Selected Tip %</p>
         <div className="tip-amount-wrapper">
-        <div className="tip-amount">
-        <input 
-        type="radio" 
-        name="tip" 
-        id="tip" 
-        value=".05" 
-        onChange={handleSelectedTip}  
-        />
-        <div className="tip-btn">
-        5%
-        </div>
-        </div>
+          <div className="tip-amount">
+            <input
+              type="radio"
+              name="tip"
+              id="input1"
+              value="5"
+              className="tip-input"
+              onInput={handleSelectedTip}
+            />
+            <label className="tip-btn" htmlFor="input1">
+              5%
+            </label>
+          </div>
 
-        <div className="tip-amount">
-        <input 
-        type="radio" 
-        name="tip" 
-        id="tip" 
-        value=".1" 
-        onChange={handleSelectedTip}  />
-        <div className="tip-btn">
-            10%
-        </div>
-        </div>
+          <div className="tip-amount">
+            <input
+              type="radio"
+              name="tip"
+              id="input2"
+              value="10"
+              className="tip-input"
+              onInput={handleSelectedTip}
+            />
+            <label className="tip-btn" htmlFor="input2">
+              10%
+            </label>
+          </div>
 
-        <div className="tip-amount">
-        <input 
-        type="radio" 
-        name="tip" 
-        id="tip" 
-        value=".15" 
-        onChange={handleSelectedTip}
-        />
-        <div className="tip-btn">
-            15%
-        </div>
-        </div>
+          <div className="tip-amount">
+            <input
+              type="radio"
+              name="tip"
+              id="input3"
+              value="15"
+              className="tip-input"
+              onInput={handleSelectedTip}
+            />
+            <label className="tip-btn" htmlFor="input3">
+              15%
+            </label>
+          </div>
 
-        <div className="tip-amount">
-        <input 
-        type="radio" 
-        name="tip" id="tip" 
-        value=".25" 
-        onChange={handleSelectedTip} 
-        />
-        <div className="tip-btn">
-            25%
-        </div>
-        </div>
+          <div className="tip-amount">
+            <input
+              type="radio"
+              name="tip"
+              id="input4"
+              value="25"
+              className="tip-input"
+              onInput={handleSelectedTip}
+            />
+            <label className="tip-btn" htmlFor="input4">
+              25%
+            </label>
+          </div>
 
-        <div className="tip-amount">
-        <input 
-        type="radio" 
-        name="tip" 
-        id="tip" 
-        value=".5" 
-        onChange={handleSelectedTip}
-        />
-        <div className="tip-btn">
-            50%
+          <div className="tip-amount">
+            <input
+              type="radio"
+              name="tip"
+              id="input5"
+              value="50"
+              className="tip-input"
+              onInput={handleSelectedTip}
+            />
+            <label className="tip-btn" htmlFor="input5">
+              50%
+            </label>
+          </div>
+          <div className="custom-wrapper">
+            <input
+              type="number"
+              id="custom"
+              className="number-input tip-custom"
+              name="tip"
+              placeholder="Custom"
+              onInput={handleSelectedTip}
+            />
+            <label htmlFor="custom" className="tip-custom-label">
+              Custom
+            </label>
+          </div>
         </div>
-        </div>
-        <input type="number" className="tip-custom" />
-      </div>
       </div>
 
       <div className="label-group">
         <div className="label-wrapper">
-          <label 
-          className="label" 
-          htmlFor="people">
+          <label className="label" htmlFor="people">
             Number of people
           </label>
-          <p className="error">
-            {showPeepsError ? "Please enter numbers only" : ""}
-          </p>
+          <p className="error">{people === 0 ? "Can't be zero" : ""}</p>
         </div>
-        <input type="number" id="people" name="people" onInput={handlePeepsInput} value={peeps} />
+        <input
+          type="number"
+          id="people"
+          name="people"
+          className={`number-input ${people === 0 ? 'number-error' : ""}`}
+          onInput={(e) => setPeople(+e.target.value)}
+          value={people}
+        />
       </div>
     </div>
   );
